@@ -6,3 +6,4 @@ class ProductForm(Form):
     price = IntegerField('Price')
     amount = IntegerField('Amount')
     comment = TextAreaField('Comment')
+

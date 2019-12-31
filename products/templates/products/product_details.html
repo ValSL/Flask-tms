@@ -12,6 +12,6 @@
     <p>DESCRIPTION: {{ product.comment }}</p>
     <p>PRICE: ${{ product.price }}</p>
     <p>AMOUNT: {{ product.amount }}</p>
-    <a href="{{ url_for('products.edit', slug=product.slug) }}" class="btn btn-warning">Edit</a>
-    <a href="{{ url_for('products.delete', slug=product.slug) }}" class="btn btn-danger">Delete</a>
+    <a href="{{ url_for('products.edit', id=product.id) }}" class="btn btn-warning">Edit</a>
+    <a href="{{ url_for('products.delete', id=product.id) }}" class="btn btn-danger">Delete</a>
 {% endblock %}

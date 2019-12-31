@@ -32,24 +32,24 @@ def create_product():
         return render_template('products/create_product.html', form=form)
 
 
-@products.route('/<slug>/edit', methods=['POST', 'GET'])
-def edit(slug):
-    product = Product.query.filter(Product.slug==slug).first()
+@products.route('/<id>/edit', methods=['POST', 'GET'])
+def edit(id):
+    product = Product.query.filter(Product.id==id).first()
 
     if request.method=='POST':
         form = ProductForm(formdata=request.form, obj=product)
         form.populate_obj(product)
         db.session.commit()
 
-        return redirect(url_for('products.product_details', slug=product.slug))
+        return redirect(url_for('products.product_details', id=product.id))
 
     form = ProductForm(obj=product)
     return render_template('products/edit.html', product=product, form=form)
 
 
-@products.route('/delete/<slug>')
-def delete(slug):
-    product = Product.query.filter(Product.slug==slug).first()
+@products.route('/delete/<id>')
+def delete(id):
+    product = Product.query.filter(Product.id==id).first()
     db.session.delete(product)
     db.session.commit()
     return redirect(url_for('products.index'))
@@ -68,8 +68,7 @@ def index():
 
 
 
-
-@products.route('/<slug>')
-def product_details(slug):
-    product = Product.query.filter(Product.slug==slug).first()
+@products.route('/<id>')
+def product_details(id):
+    product = Product.query.filter(Product.id==id).first()
     return render_template('products/product_details.html', product=product)
